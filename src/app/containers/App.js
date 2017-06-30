@@ -1,16 +1,39 @@
 import React from "react";
 import {connect} from "react-redux";
-
-import { User } from "../components/User";
-import { Main } from "../components/Main";
-import { setName } from "../actions/userActions";
+import { Item } from "../components/Item";
+import { CartItem } from "../components/CartItem";
+import { selectItem, addItem, subtractItem } from "../actions/itemActions";
 
 class App extends React.Component {
     render() {
         return (
-            <div className="container">
-                <Main changeUsername={() => this.props.setName("Anna")}/>
-                <User username={this.props.user.name}/>
+            <div>
+                <div className="container" style={{maxWidth: '400px'}}>
+                    {
+                      this.props.items.itemList.map((i, idx) =>
+                            <Item
+                                key={idx}
+                                itemInfo={i}
+                                selectItem={() => this.props.selectItem(i.id)}
+                            />
+                        )
+                    }
+                </div>
+                <div className="container" style={{maxWidth: '200px'}}>
+                    <h1>Shopping Cart</h1>
+                    <span>{`${this.props.items.itemList.filter(i => i.selected).length} items`}</span>
+                    {
+                      this.props.items.itemList.filter(il => il.selected)
+                          .map((i, idx) =>
+                            <CartItem
+                                key={idx}
+                                itemInfo={i}
+                                addItem={() => this.props.addItem(i.id)}
+                                subtractItem={() => this.props.subtractItem(i.id)}
+                            />
+                        )
+                    }
+                </div>
             </div>
         );
     }
@@ -18,15 +41,20 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-      user: state.user,
-      math: state.math
+      items: state.items
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setName: (name) => {
-            dispatch(setName(name));
+        selectItem: (id) => {
+            dispatch(selectItem(id));
+        },
+        addItem: (id) => {
+            dispatch(addItem(id));
+        },
+        subtractItem: (id) => {
+            dispatch(subtractItem(id));
         }
     };
 };
