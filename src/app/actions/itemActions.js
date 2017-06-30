@@ -30,3 +30,10 @@ export function loadItems(itemList) {
         payload: itemList
     };
 }
+
+export function deleteItem(id) {
+    return {
+        type: "DELETE_ITEM",
+        payload: id
+    }
+}

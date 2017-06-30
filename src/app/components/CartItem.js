@@ -17,7 +17,8 @@ export const CartItem = (props) => {
                         {quantityOrdered}
                     <button onClick={() => props.addItem()}>+</button>
                 </div>
-                <div>{`$${price}`}</div>
+                <div>{`@ $${price} each = $${parseFloat(quantityOrdered) * parseFloat(price)}`}</div>
+                <a href="#" onClick={() => props.deleteItem()}>Delete</a>
             </div>
         </div>
     );

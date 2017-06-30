@@ -2,10 +2,15 @@ import React from "react";
 import {connect} from "react-redux";
 import { Item } from "../components/Item";
 import { CartItem } from "../components/CartItem";
-import { selectItem, addItem, subtractItem } from "../actions/itemActions";
+import { selectItem, addItem, subtractItem, deleteItem } from "../actions/itemActions";
 
 class App extends React.Component {
     render() {
+        let total = 0;
+        this.props.items.itemList.filter(i => i.selected)
+            .forEach((il) => {
+                total += (parseFloat(il.quantityOrdered) * parseFloat(il.price));
+            });
         return (
             <div>
                 <div className="container" style={{maxWidth: '400px'}}>
@@ -30,9 +35,11 @@ class App extends React.Component {
                                 itemInfo={i}
                                 addItem={() => this.props.addItem(i.id)}
                                 subtractItem={() => this.props.subtractItem(i.id)}
+                                deleteItem={() => this.props.deleteItem(i.id)}
                             />
                         )
                     }
+                    {`Total: $${total}`}
                 </div>
             </div>
         );
@@ -55,6 +62,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         subtractItem: (id) => {
             dispatch(subtractItem(id));
+        },
+        deleteItem: (id) => {
+            dispatch(deleteItem(id));
         }
     };
 };

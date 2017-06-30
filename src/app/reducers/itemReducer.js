@@ -104,6 +104,19 @@ const itemReducer = (state = {
                 }, [])
             };
             break;
+        case "DELETE_ITEM":
+            state = {
+                ...state,
+                itemList: state.itemList.reduce((acc, i) => {
+                    if(i.id === action.payload) {
+                        i.quantityOrdered = 0;
+                        i.selected = false;
+                    }
+                    acc.push(i);
+                    return acc;
+                }, [])
+            };
+            break;
     }
     return state;
 };
