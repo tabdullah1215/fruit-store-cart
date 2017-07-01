@@ -10,10 +10,10 @@ export const Item = (props) => {
 
     return (
         <div>
-        <Grid style={{width:'25%', border:'2px solid LightSeaGreen'}} >
+        <Grid style={{width:'100%', minWidth: '150px', height: '100%', border:'2px solid LightSeaGreen'}} >
             <Row className="show-grid" >
                 <Col sm={12}>
-                    <img src={imgSrc} style={{width:'80%'}}/>
+                    <img src={imgSrc} style={{maxWidth: '150px', maxHeight:'300px'}}/>
                 </Col>
             </Row>
             <Row className="show-grid">
