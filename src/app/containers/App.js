@@ -5,6 +5,7 @@ import { CartItem } from "../components/CartItem";
 import { selectItem, addItem, subtractItem, deleteItem } from "../actions/itemActions";
 
 class App extends React.Component {
+
     render() {
         let total = 0;
         this.props.items.itemList.filter(i => i.selected)
@@ -13,7 +14,7 @@ class App extends React.Component {
             });
         return (
             <div>
-                <div className="container" style={{maxWidth: '400px'}}>
+                <div>
                     {
                       this.props.items.itemList.map((i, idx) =>
                             <Item
@@ -24,7 +25,7 @@ class App extends React.Component {
                         )
                     }
                 </div>
-                <div className="container" style={{maxWidth: '200px'}}>
+                <div style={{maxWidth: '200px'}}>
                     <h1>Shopping Cart</h1>
                     <span>{`${this.props.items.itemList.filter(i => i.selected).length} items`}</span>
                     {
