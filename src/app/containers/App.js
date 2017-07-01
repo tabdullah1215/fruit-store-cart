@@ -35,7 +35,7 @@ class App extends React.Component {
         let cols = 3;
         return (
             <div>
-                <div className="container">
+                <div className="container" style={{border: '2px solid LightSeaGreen'}}>
                     <Gridify columns={{xs:1, sm:1, md:4, lg:4}} components={arrayOfItems}/>
                 </div>
                 <div style={{maxWidth: '200px'}}>
