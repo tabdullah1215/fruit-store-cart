@@ -3,23 +3,32 @@
  */
 
 import React from "react";
-import {Row} from 'react-bootstrap';
+import {Grid, Row, Col, Button} from 'react-bootstrap';
 
 export const CartItem = (props) => {
     const {itemName, imgSrc, price, quantityRemaining, selected, quantityOrdered} = props.itemInfo;
     return (
-        <div style={{width:'125px'}}>
-            <div>
-                <img src={imgSrc} style={{width:'50px'}}/>
-                <div>{itemName}</div>
+        <Grid style={{width:'350px', backgroundColor: 'MediumSpringGreen'}}>
+            <Row className="show-grid" style={{verticalAlign: 'bottom'}}>
+              <Col sm={4}>
+                <img src={imgSrc} style={{maxWidth: '75px', maxHeight:'150px'}}/>
+              </Col>
+              <Col sm={8} style={{marginTop: '15px'}}>
                 <div style={{display: 'inline'}}>
                     <button onClick={() => props.subtractItem()}>-</button>
                         {quantityOrdered}
                     <button onClick={() => props.addItem()}>+</button>
                 </div>
+              </Col>
+            </Row>
+            <Row className="show-grid">
+              <Col sm={6}>
                 <div>{`@ $${price} each = $${parseFloat(quantityOrdered) * parseFloat(price)}`}</div>
+              </Col>
+              <Col sm={6}>
                 <a href="#" onClick={() => props.deleteItem()}>Delete</a>
-            </div>
-        </div>
+              </Col>
+            </Row>
+        </Grid>
     );
 };

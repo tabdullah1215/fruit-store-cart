@@ -18,7 +18,7 @@ export const Item = (props) => {
             </Row>
             <Row className="show-grid">
                 <Col sm={12} style={{textAlign: 'center'}}>
-                {itemName}
+                    {itemName}
                 </Col>
             </Row>
             <Row className="show-grid">

@@ -33,19 +33,25 @@ class App extends React.Component {
                 total += (parseFloat(il.quantityOrdered) * parseFloat(il.price));
             });
         let cols = 3;
+        let shopGrid = (
+            <div className="container" style={{border: '2px solid LightSeaGreen'}}>
+                <Gridify columns={{xs:1, sm:1, md:4, lg:4}} components={arrayOfItems}/>
+            </div>
+        );
+        let cartGrid = (
+            <div style={{width: '25%', float: 'right', border: '2px solid LightSeaGreen'}}>
+                <h1>Shopping Cart</h1>
+                <span>{`${this.props.items.itemList.filter(i => i.selected).length} items`}</span>
+                <div className="container">
+                    <Gridify columns={{xs:1, sm:1, md:1, lg:1}} components={arrayOfCartItems}/>
+                </div>
+                {`Total: $${total}`}
+            </div>
+        );
+        let arrayOfGrids = [shopGrid, cartGrid];
         return (
-            <div>
-                <div className="container" style={{border: '2px solid LightSeaGreen'}}>
-                    <Gridify columns={{xs:1, sm:1, md:4, lg:4}} components={arrayOfItems}/>
-                </div>
-                <div style={{maxWidth: '200px'}}>
-                    <h1>Shopping Cart</h1>
-                    <span>{`${this.props.items.itemList.filter(i => i.selected).length} items`}</span>
-                    <div className="container">
-                        <Gridify columns={{xs:1, sm:1, md:1, lg:1}} components={arrayOfCartItems}/>
-                    </div>
-                    {`Total: $${total}`}
-                </div>
+            <div style={{display: 'inline'}}>
+               <Gridify columns={{xs:1, sm:1, md:2, lg:2}} components={arrayOfGrids}/>
             </div>
         );
     }
