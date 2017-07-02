@@ -6,18 +6,20 @@ import { selectItem, addItem, subtractItem, deleteItem, emptyCart, confirmPurcha
 import Gridify from 'react-bootstrap-gridify';
 
 class App extends React.Component {
-
-    render() {
+    getArrayOfItems() {
         const {itemList} = this.props.items;
-        let arrayOfItems =
-            itemList.map((i, idx) =>
-                <Item
-                    key={idx}
-                    itemInfo={i}
-                    selectItem={() => this.props.selectItem(i.id)}
-                />
-            )
-        let arrayOfCartItems =
+        return (
+        itemList.map((i, idx) =>
+            <Item
+                key={idx}
+                itemInfo={i}
+                selectItem={() => this.props.selectItem(i.id)}
+            />
+        ));
+    }
+    getArrayOfCartItems() {
+        const {itemList} = this.props.items;
+        return (
             itemList.filter(il => il.selected)
                 .map((i, idx) =>
                     <CartItem
@@ -28,22 +30,33 @@ class App extends React.Component {
                         deleteItem={() => this.props.deleteItem(i.id)}
                     />
                 )
+        );
+    }
+    getTotal() {
+        const {itemList} = this.props.items;
         let total = 0;
         itemList.filter(i => i.selected)
             .forEach((il) => {
                 total += (parseFloat(il.quantityOrdered) * parseFloat(il.price));
             });
-        let shopGrid = (
+        return total;
+    }
+    getShopGrid(items) {
+        const {itemList} = this.props.items;
+        return (
             <div className="container" style={{border: '2px solid LightSeaGreen'}}>
-                <Gridify columns={{xs:1, sm:1, md:4, lg:4}} components={arrayOfItems}/>
+                <Gridify columns={{xs:1, sm:1, md:4, lg:4}} components={items}/>
             </div>
         );
-        let cartGrid = (
+    }
+    getCartGrid(cartItems, total) {
+        const {itemList} = this.props.items;
+        return (
             <div style={{width: '25%', float: 'right', border: '2px solid LightSeaGreen'}}>
                 <h1>Shopping Cart</h1>
                 <span>{`${itemList.filter(i => i.selected).length} items`}</span>
                 <div className="container">
-                    <Gridify columns={{xs:1, sm:1, md:1, lg:1}} components={arrayOfCartItems}/>
+                    <Gridify columns={{xs:1, sm:1, md:1, lg:1}} components={cartItems}/>
                 </div>
                 {`Total: $${total}`}
                 <a href="#" onClick={() => this.props.emptyCart()}>Empty Cart</a>
@@ -54,7 +67,13 @@ class App extends React.Component {
                 </button>
             </div>
         );
-        let arrayOfGrids = [shopGrid, cartGrid];
+    }
+    render() {
+        const {itemList} = this.props.items;
+        let arrayOfGrids = [
+            this.getShopGrid(this.getArrayOfItems())
+            , this.getCartGrid(this.getArrayOfCartItems(), this.getTotal())
+        ];
         return (
             <div style={{display: 'inline'}}>
                <Gridify columns={{xs:1, sm:1, md:2, lg:2}} components={arrayOfGrids}/>
