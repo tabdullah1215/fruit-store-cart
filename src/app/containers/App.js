@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import { Item } from "../components/Item";
 import { CartItem } from "../components/CartItem";
-import { selectItem, addItem, subtractItem, deleteItem } from "../actions/itemActions";
+import { selectItem, addItem, subtractItem, deleteItem, emptyCart, confirmPurchase } from "../actions/itemActions";
 import Gridify from 'react-bootstrap-gridify';
 
 class App extends React.Component {
@@ -46,6 +46,12 @@ class App extends React.Component {
                     <Gridify columns={{xs:1, sm:1, md:1, lg:1}} components={arrayOfCartItems}/>
                 </div>
                 {`Total: $${total}`}
+                <a href="#" onClick={() => this.props.emptyCart()}>Empty Cart</a>
+                <button
+                    className="btn btn-success"
+                    onClick={() => this.props.confirmPurchase()}>
+                    Confirm Purchase
+                </button>
             </div>
         );
         let arrayOfGrids = [shopGrid, cartGrid];
@@ -76,6 +82,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         deleteItem: (id) => {
             dispatch(deleteItem(id));
+        },
+        emptyCart: (id) => {
+            dispatch(emptyCart());
+        },
+        confirmPurchase: (id) => {
+            dispatch(confirmPurchase());
         }
     };
 };

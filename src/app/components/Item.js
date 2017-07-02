@@ -34,6 +34,7 @@ export const Item = (props) => {
                 <Col sm={3}/>
                 <Col sm={6}>
                     <button
+                        disabled={quantityRemaining === 0}
                         className="btn btn-success"
                         onClick={() => props.selectItem()}>
                         Add to Cart

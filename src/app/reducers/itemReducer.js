@@ -117,6 +117,33 @@ const itemReducer = (state = {
                 }, [])
             };
             break;
+        case "EMPTY_CART":
+            state = {
+                ...state,
+                itemList: state.itemList.reduce((acc, i) => {
+                    if(i.selected) {
+                        i.quantityOrdered = 0;
+                        i.selected = false;
+                    }
+                    acc.push(i);
+                    return acc;
+                }, [])
+            };
+            break;
+        case "CONFIRM_PURCHASE":
+            state = {
+                ...state,
+                itemList: state.itemList.reduce((acc, i) => {
+                    if(i.selected) {
+                        i.quantityRemaining = i.quantityRemaining - i.quantityOrdered;
+                        i.quantityOrdered = 0;
+                        i.selected = false;
+                    }
+                    acc.push(i);
+                    return acc;
+                }, [])
+            };
+
     }
     return state;
 };

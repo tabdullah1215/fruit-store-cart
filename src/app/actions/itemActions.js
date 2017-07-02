@@ -37,3 +37,15 @@ export function deleteItem(id) {
         payload: id
     }
 }
+
+export function emptyCart() {
+    return {
+        type: "EMPTY_CART"
+    }
+}
+
+export function confirmPurchase() {
+    return {
+        type: "CONFIRM_PURCHASE",
+    }
+}
