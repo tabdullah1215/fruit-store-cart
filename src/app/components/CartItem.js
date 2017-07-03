@@ -8,7 +8,7 @@ import {Grid, Row, Col, Button} from 'react-bootstrap';
 export const CartItem = (props) => {
     const {itemName, imgSrc, price, quantityRemaining, selected, quantityOrdered} = props.itemInfo;
     return (
-        <Grid style={{width:'350px', backgroundColor: 'MediumSpringGreen'}}>
+        <Grid style={{backgroundColor: 'MediumSpringGreen', width: '100%'}}>
             <Row className="show-grid" style={{verticalAlign: 'bottom'}}>
               <Col sm={4}>
                 <img src={imgSrc} style={{maxWidth: '75px', maxHeight:'150px'}}/>

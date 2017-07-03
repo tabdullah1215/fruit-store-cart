@@ -9,36 +9,38 @@ export const Item = (props) => {
     const {itemName, imgSrc, price, quantityRemaining, selected} = props.itemInfo;
 
     return (
-        <div>
-        <Grid style={{paddingBottom: '15px', marginTop: '10px', marginBottom: '10px', width:'100%', minWidth: '150px', height: '100%', border:'2px solid LightSeaGreen'}} >
+        <div style={{minHeight: '100%'}}>
+        <Grid style={{paddingBottom: '15px', marginTop: '10px', marginBottom: '10px', width:'100%', height: '100%', border:'2px solid MediumSeaGreen'}} >
             <Row className="show-grid" >
                 <Col sm={12}>
-                    <img src={imgSrc} style={{maxWidth: '150px', maxHeight:'300px'}}/>
+                    <div style={{width: '100%', textAlign: 'center'}}>
+                    <img src={imgSrc} style={{minWidth: '100px', minHeight:'100px', maxWidth: '100px', maxHeight:'100px'}}/>
+                    </div>
                 </Col>
             </Row>
             <Row className="show-grid">
-                <Col sm={12} style={{textAlign: 'center'}}>
-                    {itemName}
+                <Col sm={12} style={{fontWeight: 'bold', textAlign: 'center'}}>
+                    {itemName.charAt(0).toUpperCase() + itemName.slice(1)}
                 </Col>
             </Row>
             <Row className="show-grid">
-                <Col sm={3}/>
-                <Col sm={3} bsSize="large">
-                  {`$${price}`}
-                </Col>
-                <Col sm={6}>
-                  {`${quantityRemaining} in stock`}
+                <Col sm={12}>
+                    <div style={{width: '100%', textAlign: 'center'}}>
+                        <span style={{fontWeight: 'bold', fontSize: 'large'}}>{`$${price}`}</span>
+                        <span style={{fontWeight: 'normal', fontSize: 'small'}} >{` ${quantityRemaining} in Stock`}</span>
+                    </div>
                 </Col>
             </Row>
             <Row className="show-grid">
-                <Col sm={3}/>
-                <Col sm={6}>
-                    <button
-                        disabled={quantityRemaining === 0}
-                        className="btn btn-success"
-                        onClick={() => props.selectItem()}>
-                        Add to Cart
-                    </button>
+                <Col sm={12}>
+                    <div style={{width: '100%', textAlign: 'center'}}>
+                        <button
+                            style={{width: '90%', height: '30px', borderRadius: '8px', backgroundColor: 'MediumSeaGreen', fontWeight: 'bold'}}
+                            disabled={quantityRemaining === 0}
+                            onClick={() => props.selectItem()}>
+                            Add to Cart
+                        </button>
+                    </div>
                 </Col>
             </Row>
         </Grid>

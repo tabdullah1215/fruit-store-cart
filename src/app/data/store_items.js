@@ -25,7 +25,7 @@ export default function getItemList() {
             "quantityRemaining": 15
         },
         {
-            "itemName": "very delicious pineapple with a long name",
+            "itemName": "pineapple",
             "imgSrc": "https://tinyurl.com/k2oq2to",
             "price": 4.75,
             "quantityRemaining": 1
