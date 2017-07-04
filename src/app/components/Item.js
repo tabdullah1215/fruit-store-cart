@@ -26,7 +26,7 @@ export const Item = (props) => {
             <Row className="show-grid">
                 <Col sm={12}>
                     <div style={{width: '100%', textAlign: 'center'}}>
-                        <span style={{fontWeight: 'bold', fontSize: 'large'}}>{`$${price}`}</span>
+                        <span style={{fontWeight: 'bold', fontSize: 'x-large'}}>{`$${price}`}</span>
                         <span style={{fontWeight: 'normal', fontSize: 'small'}} >{` ${quantityRemaining} in Stock`}</span>
                     </div>
                 </Col>

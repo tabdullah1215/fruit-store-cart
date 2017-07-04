@@ -4,7 +4,6 @@ import { Item } from "../components/Item";
 import { CartItem } from "../components/CartItem";
 import { selectItem, addItem, subtractItem, deleteItem, emptyCart, confirmPurchase } from "../actions/itemActions";
 import Gridify from 'react-bootstrap-gridify';
-import {Grid, Row, Col, Button} from 'react-bootstrap';
 
 class App extends React.Component {
     getArrayOfItems() {
@@ -46,57 +45,40 @@ class App extends React.Component {
         const {itemList} = this.props.items;
         return (
             <div className="container" style={{float: 'left', width: '75%', border: '2px solid MediumSeaGreen'}}>
-                <Gridify columns={{xs:1, sm:1, md:3, lg:4}} components={items}/>
+                <Gridify columns={{xs:4, sm:4, md:4, lg:4}} components={items}/>
             </div>
         );
     }
     getCartGrid(cartItems, total) {
         const {itemList} = this.props.items;
         return (
-            <div>
-                <div style={{width: '25%', float: 'right', border: '2px solid MediumSeaGreen', textAlign: 'center', minHeight: '490px'}}>
-                    <div style={{backgroundColor: 'MediumSeaGreen'}}>
-                        <div style={{fontSize: '24px', fontFamily: 'Arial Black', color: 'white', paddingTop: '20px' }}>Shopping Cart</div>
-                        <span style={{color: 'white'}}>{`${itemList.filter(i => i.selected).length} items`}</span>
-                    </div>
-                    <div>
-                        <Gridify columns={{xs:1, sm:1, md:1, lg:1}} components={cartItems}/>
-                    </div>
-                    <Grid style={{width: '100%'}}>
-                        <Row className="show-grid">
-                            <Col sm={12}>
-                                <div style={{textAlign: 'right', color: 'white', borderTop: '2px solid white', backgroundColor: 'MediumSeaGreen'}}>
-                                    <div style={{float: 'right', paddingTop: '20px', paddingRight: '5px', fontWeight: 'bold'}}>{`Total: $${total}`}</div>
-                                </div>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col sm={12}>
-                                <div>
-                                    <button
-                                        style={{float: 'right', width: '70%', height: '30px', borderRadius: '8px', backgroundColor: 'MediumSpringGreen', color: 'black', fontWeight: 'bold'}}
-                                        onClick={() => this.props.confirmPurchase()}>
-                                        Confirm Purchase
-                                    </button>
-                                </div>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col sm={12}>
-                                <div style={{float: 'right', fontSize: 'small'}}><a href="#" onClick={() => this.props.emptyCart()}>Empty Cart</a></div>
-                            </Col>
-                        </Row>
-                    </Grid>
-
+            <div style={{width: '25%', float: 'right', border: '2px solid MediumSeaGreen', textAlign: 'center', minHeight: '490px'}}>
+                <div style={{backgroundColor: 'MediumSeaGreen'}}>
+                    <div style={{fontSize: '24px', fontFamily: 'Arial Black', color: 'white', paddingTop: '20px' }}>Shopping Cart</div>
+                    <span style={{color: 'white'}}>{`${itemList.filter(i => i.selected).length} items`}</span>
+                </div>
+                <div>
+                    <Gridify columns={{xs:1, sm:1, md:1, lg:1}} components={cartItems}/>
                 </div>
 
+                <div style={{textAlign: 'right', color: 'white', borderTop: '2px solid white', backgroundColor: 'MediumSeaGreen'}}>
+                    <div style={{float: 'right', paddingTop: '20px', paddingRight: '5px', fontWeight: 'bold'}}>{`Total: $${total}`}</div>
+                </div>
+                <div>
+                    <button
+                        style={{float: 'right', width: '70%', height: '30px', borderRadius: '8px', backgroundColor: 'MediumSpringGreen', color: 'black', fontWeight: 'bold'}}
+                        onClick={() => this.props.confirmPurchase()}>
+                        Confirm Purchase
+                    </button>
+                </div>
+                <div style={{float: 'right', fontSize: 'small'}}><a href="#" onClick={() => this.props.emptyCart()}>Empty Cart</a></div>
             </div>
         );
     }
     render() {
         const {itemList} = this.props.items;
         return (
-            <div style={{maxWidth: '1200px', maxHeight: '490px', position: 'absolute', top: '10%', left: '10%'}}>
+            <div style={{minWidth: '1200px', minHeight: '490px', position: 'absolute', top: '10%', left: '10%'}}>
                 {this.getShopGrid(this.getArrayOfItems())}
                 {this.getCartGrid(this.getArrayOfCartItems(), this.getTotal())}
             </div>
