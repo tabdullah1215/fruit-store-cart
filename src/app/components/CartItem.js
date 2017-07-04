@@ -11,13 +11,13 @@ export const CartItem = (props) => {
         <Grid style={{backgroundColor: 'MediumSpringGreen', width: '100%'}}>
             <Row className="show-grid" style={{verticalAlign: 'bottom'}}>
               <Col sm={4}>
-                <img src={imgSrc} style={{maxWidth: '75px', maxHeight:'150px'}}/>
+                <img src={imgSrc} style={{maxWidth: '75px', maxHeight:'75px', minWidth: '75px', minHeight:'75px'}}/>
               </Col>
               <Col sm={8} style={{marginTop: '15px'}}>
                 <div style={{display: 'inline'}}>
-                    <button onClick={() => props.subtractItem()}>-</button>
-                        {quantityOrdered}
-                    <button onClick={() => props.addItem()}>+</button>
+                    <button onClick={() => props.subtractItem()}>{' - '}</button>
+                    <span style={{paddingLeft: '5px', paddingRight: '5px'}}>{quantityOrdered}</span>
+                    <button onClick={() => props.addItem()}>{' + '}</button>
                 </div>
               </Col>
             </Row>

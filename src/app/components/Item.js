@@ -14,7 +14,7 @@ export const Item = (props) => {
             <Row className="show-grid" >
                 <Col sm={12}>
                     <div style={{width: '100%', textAlign: 'center'}}>
-                    <img src={imgSrc} style={{minWidth: '100px', minHeight:'100px', maxWidth: '100px', maxHeight:'100px'}}/>
+                    <img src={imgSrc} style={{minWidth: '125px', minHeight:'125px', maxWidth: '125px', maxHeight:'125px'}}/>
                     </div>
                 </Col>
             </Row>
