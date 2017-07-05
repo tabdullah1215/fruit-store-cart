@@ -2,6 +2,8 @@ import React from "react";
 import {connect} from "react-redux";
 import { Item } from "../components/Item";
 import { CartItem } from "../components/CartItem";
+import { CartHeader } from "../components/CartHeader";
+import { CartFooter } from "../components/CartFooter";
 import { selectItem, addItem, subtractItem, deleteItem, emptyCart, confirmPurchase } from "../actions/itemActions";
 import Gridify from 'react-bootstrap-gridify';
 
@@ -54,28 +56,12 @@ class App extends React.Component {
         return (
             <div style={{width: '25%', float: 'right', border: '2px solid MediumSeaGreen', textAlign: 'center', backgroundColor: 'MediumSeaGreen' }}>
                 <div style={{minHeight: '496px'}}>
-                    <div style={{backgroundColor: 'MediumSeaGreen', borderBottom: '2px solid white'}}>
-                        <div style={{fontSize: '24px', fontFamily: 'Arial Black', color: 'white', paddingTop: '20px' }}>Shopping Cart</div>
-                        <span style={{color: 'white'}}>{`${itemList.filter(i => i.selected).length} items`}</span>
-                    </div>
+                    <CartHeader title="Shopping Cart" numItems={itemList.filter(i => i.selected).length}></CartHeader>
                     <div className="empty" style={{overflowY: 'auto', overflowX: 'hidden', minHeight: '422px', maxHeight: '422px', backgroundColor: 'MediumSeaGreen'}}>
                         <Gridify columns={{xs:1, sm:1, md:1, lg:1}} components={cartItems}/>
                     </div>
                 </div>
-                <div style={{backgroundColor: 'MediumSeaGreen', height: '120px', float: 'right', display: 'block', width: '90%', textAlign: 'right'}}>
-                    <div style={{color: 'white', borderTop: '2px solid white', backgroundColor: 'MediumSeaGreen'}}>
-                        <div style={{paddingTop: '20px', paddingRight: '5px', fontFamily: 'Arial Black', fontWeight: 'normal', fontSize: 'medium', marginRight: '10px'}}>{`Total: $${total.toFixed(2)}`}</div>
-                    </div>
-
-                    <div style={{fontSize: 'small'}}><a href="#" onClick={() => this.props.emptyCart()}><span style={{color: 'white', fontSize: 'small', marginRight: '10px'}}>Empty Cart</span></a></div>
-                    <div>
-                        <button
-                            style={{width: '70%', height: '35px', borderRadius: '8px', backgroundColor: '#d9f2e4', color: 'black', fontFamily: 'Arial Black', fontSize: '16px', fontWeight: 'bold', margin: '10px'}}
-                            onClick={() => this.props.confirmPurchase()}>
-                            Confirm Purchase
-                        </button>
-                    </div>
-                </div>
+                <CartFooter total={total} confirmPurchase={() => this.props.confirmPurchase()} emptyCart={() => this.props.emptyCart()} />
             </div>
         );
     }
@@ -110,10 +96,10 @@ const mapDispatchToProps = (dispatch) => {
         deleteItem: (id) => {
             dispatch(deleteItem(id));
         },
-        emptyCart: (id) => {
+        emptyCart: () => {
             dispatch(emptyCart());
         },
-        confirmPurchase: (id) => {
+        confirmPurchase: () => {
             dispatch(confirmPurchase());
         }
     };
