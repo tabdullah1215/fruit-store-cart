@@ -16,6 +16,7 @@ export const CartFooter = (props) => {
             <div style={{fontSize: 'small'}}><a href="#" onClick={() => props.emptyCart()}><span style={{color: 'white', fontSize: 'small', marginRight: '10px'}}>Empty Cart</span></a></div>
             <div>
                 <button
+                    disabled={total===0 ? true: false}
                     style={{width: '70%', height: '35px', borderRadius: '8px', backgroundColor: '#d9f2e4', color: 'black', fontFamily: 'Arial Black', fontSize: '16px', fontWeight: 'bold', margin: '10px'}}
                     onClick={() => props.confirmPurchase()}>
                     Confirm Purchase

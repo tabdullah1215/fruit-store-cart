@@ -46,8 +46,11 @@ class App extends React.Component {
     getShopGrid(items) {
         const {itemList} = this.props.items;
         return (
-            <div className="container" style={{float: 'left', width: '75%', border: '2px solid MediumSeaGreen', borderRight: '0px'}}>
-                <Gridify columns={{xs:4, sm:4, md:4, lg:4}} components={items}/>
+            <div>
+                <div style={{paddingLeft: '20px'}}><span style={{backgroundColor: 'MediumSeaGreen', color: 'white', fontFamily: 'Arial Black', fontSize: '36px', fontWeight: 'bold', paddingRight: '40px', paddingLeft: '40px'}}>Fruits</span></div>
+                <div className="container" style={{float: 'left', width: '75%', border: '2px solid MediumSeaGreen', borderRight: '0px'}}>
+                    <Gridify columns={{xs:4, sm:4, md:4, lg:4}} components={items}/>
+                </div>
             </div>
         );
     }
