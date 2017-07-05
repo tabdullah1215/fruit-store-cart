@@ -44,7 +44,7 @@ class App extends React.Component {
     getShopGrid(items) {
         const {itemList} = this.props.items;
         return (
-            <div className="container" style={{float: 'left', width: '75%', border: '2px solid MediumSeaGreen'}}>
+            <div className="container" style={{float: 'left', width: '75%', border: '2px solid MediumSeaGreen', borderRight: '0px'}}>
                 <Gridify columns={{xs:4, sm:4, md:4, lg:4}} components={items}/>
             </div>
         );
@@ -52,25 +52,25 @@ class App extends React.Component {
     getCartGrid(cartItems, total) {
         const {itemList} = this.props.items;
         return (
-            <div style={{width: '25%', float: 'right', border: '2px solid MediumSeaGreen', textAlign: 'center' }}>
+            <div style={{width: '25%', float: 'right', border: '2px solid MediumSeaGreen', textAlign: 'center', backgroundColor: 'MediumSeaGreen' }}>
                 <div style={{minHeight: '496px'}}>
-                    <div style={{backgroundColor: 'MediumSeaGreen'}}>
+                    <div style={{backgroundColor: 'MediumSeaGreen', borderBottom: '2px solid white'}}>
                         <div style={{fontSize: '24px', fontFamily: 'Arial Black', color: 'white', paddingTop: '20px' }}>Shopping Cart</div>
                         <span style={{color: 'white'}}>{`${itemList.filter(i => i.selected).length} items`}</span>
                     </div>
-                    <div className="empty" style={{overflowY: 'auto', overflowX: 'hidden', minHeight: '422px', maxHeight: '422px'}}>
+                    <div className="empty" style={{overflowY: 'auto', overflowX: 'hidden', minHeight: '422px', maxHeight: '422px', backgroundColor: 'MediumSeaGreen'}}>
                         <Gridify columns={{xs:1, sm:1, md:1, lg:1}} components={cartItems}/>
                     </div>
                 </div>
-                <div style={{backgroundColor: 'MediumSeaGreen', height: '120px', float: 'right', display: 'block', width: '100%', textAlign: 'right'}}>
+                <div style={{backgroundColor: 'MediumSeaGreen', height: '120px', float: 'right', display: 'block', width: '90%', textAlign: 'right'}}>
                     <div style={{color: 'white', borderTop: '2px solid white', backgroundColor: 'MediumSeaGreen'}}>
-                        <div style={{paddingTop: '20px', paddingRight: '5px', fontWeight: 'bold', fontSize: 'medium', marginRight: '10px'}}>{`Total: $${total}`}</div>
+                        <div style={{paddingTop: '20px', paddingRight: '5px', fontFamily: 'Arial Black', fontWeight: 'normal', fontSize: 'medium', marginRight: '10px'}}>{`Total: $${total.toFixed(2)}`}</div>
                     </div>
 
                     <div style={{fontSize: 'small'}}><a href="#" onClick={() => this.props.emptyCart()}><span style={{color: 'white', fontSize: 'small', marginRight: '10px'}}>Empty Cart</span></a></div>
                     <div>
                         <button
-                            style={{width: '70%', height: '30px', borderRadius: '8px', backgroundColor: 'MediumSpringGreen', color: 'black', fontWeight: 'bold', margin: '10px'}}
+                            style={{width: '70%', height: '35px', borderRadius: '8px', backgroundColor: '#d9f2e4', color: 'black', fontFamily: 'Arial Black', fontSize: '16px', fontWeight: 'bold', margin: '10px'}}
                             onClick={() => this.props.confirmPurchase()}>
                             Confirm Purchase
                         </button>
