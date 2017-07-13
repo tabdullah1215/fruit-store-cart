@@ -20,7 +20,7 @@ const itemReducer = (state = {
                     i.selected = true;
                     i.quantityOrdered = 1;
                   }
-                  acc.push(i);
+                  acc = [...acc, i];
                   return acc;
                 }, [])
             };
@@ -32,7 +32,7 @@ const itemReducer = (state = {
                     if(i.id === action.payload && i.quantityOrdered < i.quantityRemaining){
                           i.quantityOrdered++;
                     }
-                    acc.push(i);
+                    acc = [...acc, i];
                     return acc;
                 }, [])
             };
@@ -44,7 +44,7 @@ const itemReducer = (state = {
                     if(i.id === action.payload && i.quantityOrdered > 1) {
                             i.quantityOrdered--;
                     }
-                    acc.push(i);
+                    acc = [...acc, i];
                     return acc;
                 }, [])
             };
@@ -57,7 +57,7 @@ const itemReducer = (state = {
                         i.quantityOrdered = 0;
                         i.selected = false;
                     }
-                    acc.push(i);
+                    acc = [...acc, i];
                     return acc;
                 }, [])
             };
@@ -70,7 +70,7 @@ const itemReducer = (state = {
                         i.quantityOrdered = 0;
                         i.selected = false;
                     }
-                    acc.push(i);
+                    acc = [...acc, i];
                     return acc;
                 }, [])
             };
@@ -84,7 +84,7 @@ const itemReducer = (state = {
                         i.quantityOrdered = 0;
                         i.selected = false;
                     }
-                    acc.push(i);
+                    acc = [...acc, i];
                     return acc;
                 }, [])
             };

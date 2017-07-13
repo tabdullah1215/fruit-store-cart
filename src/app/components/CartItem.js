@@ -15,9 +15,9 @@ export const CartItem = (props) => {
               </Col>
               <Col sm={8} style={{marginTop: '15px', paddingTop: '30px', textAlign: 'left'}}>
                 <div style={{display: 'inline'}}>
-                    <button onClick={() => props.subtractItem()}>{' - '}</button>
+                    <button onClick={props.subtractItem}>{' - '}</button>
                     <span style={{paddingLeft: '5px', paddingRight: '5px'}}>{quantityOrdered}</span>
-                    <button onClick={() => props.addItem()}>{' + '}</button>
+                    <button onClick={props.addItem}>{' + '}</button>
                 </div>
               </Col>
             </Row>
@@ -26,7 +26,7 @@ export const CartItem = (props) => {
                 <div style={{fontFamily: 'Arial Black', textAlign: 'left'}}>{`@ $${price} each = $${(parseFloat(quantityOrdered) * parseFloat(price)).toFixed(2)}`}</div>
               </Col>
               <Col sm={3} style={{textAlign: 'right'}}>
-                  <a href="#" onClick={() => props.deleteItem()}><span style={{color: 'white'}}>Delete</span></a>
+                  <a href="#" onClick={props.deleteItem}><span style={{color: 'white'}}>Delete</span></a>
               </Col>
             </Row>
         </Grid>

@@ -37,7 +37,7 @@ export const Item = (props) => {
                             <button
                                 style={{width: '90%', height: '30px', borderRadius: '8px', backgroundColor: 'MediumSeaGreen', fontWeight: 'bold'}}
                                 disabled={quantityRemaining === 0}
-                                onClick={() => props.selectItem()}>
+                                onClick={props.selectItem}>
                                 Add to Cart
                             </button>
                         </div>

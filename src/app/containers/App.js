@@ -39,7 +39,7 @@ class App extends React.Component {
         let total = 0;
         itemList.filter(i => i.selected)
             .forEach((il) => {
-                total += (parseFloat(il.quantityOrdered) * parseFloat(il.price));
+                total += ((il.quantityOrdered) * (il.price));
             });
         return total;
     }
