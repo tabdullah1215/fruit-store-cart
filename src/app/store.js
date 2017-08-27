@@ -1,10 +1,10 @@
 import {createStore, combineReducers, applyMiddleware} from "redux";
 import logger from "redux-logger";
-import items from "./reducers/itemReducer";
+import itemReducer from "./reducers/itemReducer";
 
 export default createStore(
     combineReducers({
-        items
+        itemReducer
     }),
     {},
     applyMiddleware(logger())

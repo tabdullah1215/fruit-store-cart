@@ -5,7 +5,7 @@
 import getItemList from '../data/store_items';
 
 const itemReducer = (state = {
-     itemList: getItemList().map((i, idx) => {
+     items: getItemList().map((i, idx) => {
          return {
              ...i, id: idx, selected: false, quantityOrdered: 0
          }
@@ -15,7 +15,7 @@ const itemReducer = (state = {
         case "SELECT_ITEM":
             state = {
                 ...state,
-                itemList: state.itemList.reduce((acc, i) => {
+                items: state.items.reduce((acc, i) => {
                   if(i.id === action.payload) {
                     i.selected = true;
                     i.quantityOrdered = 1;
@@ -28,7 +28,7 @@ const itemReducer = (state = {
         case "ADD_ITEM":
             state = {
                 ...state,
-                itemList: state.itemList.reduce((acc, i) => {
+                items: state.items.reduce((acc, i) => {
                     if(i.id === action.payload && i.quantityOrdered < i.quantityRemaining){
                           i.quantityOrdered++;
                     }
@@ -40,7 +40,7 @@ const itemReducer = (state = {
         case "SUBTRACT_ITEM":
             state = {
                 ...state,
-                itemList: state.itemList.reduce((acc, i) => {
+                items: state.items.reduce((acc, i) => {
                     if(i.id === action.payload && i.quantityOrdered > 1) {
                             i.quantityOrdered--;
                     }
@@ -52,7 +52,7 @@ const itemReducer = (state = {
         case "DELETE_ITEM":
             state = {
                 ...state,
-                itemList: state.itemList.reduce((acc, i) => {
+                items: state.items.reduce((acc, i) => {
                     if(i.id === action.payload) {
                         i.quantityOrdered = 0;
                         i.selected = false;
@@ -65,7 +65,7 @@ const itemReducer = (state = {
         case "EMPTY_CART":
             state = {
                 ...state,
-                itemList: state.itemList.reduce((acc, i) => {
+                items: state.items.reduce((acc, i) => {
                     if(i.selected) {
                         i.quantityOrdered = 0;
                         i.selected = false;
@@ -78,7 +78,7 @@ const itemReducer = (state = {
         case "CONFIRM_PURCHASE":
             state = {
                 ...state,
-                itemList: state.itemList.reduce((acc, i) => {
+                items: state.items.reduce((acc, i) => {
                     if(i.selected) {
                         i.quantityRemaining -= i.quantityOrdered;
                         i.quantityOrdered = 0;
